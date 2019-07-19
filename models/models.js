@@ -4,7 +4,7 @@ const config = require("../_config");
 
 module.exports = (wagner) => {
     mongoose.Promise = global.Promise;
-    mongoose.connect("mongodb://localhost:27017/"+config.DB,{useMongoCliente:true});
+    mongoose.connect("mongodb://localhost:27017/"+config.DB,{ useNewUrlParser: true });
 
     wagner.factory('db',()=>mongoose);
 
@@ -14,7 +14,7 @@ module.exports = (wagner) => {
         Product
     }
 
-    _.each(models,(v,k) =>{
-        wagner.factory(k,()=>v);
+    _.each(models, (v, k) => {
+        wagner.factory(k, () => v);
     })
 }
